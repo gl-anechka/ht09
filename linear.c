@@ -11,7 +11,8 @@
 
 /* Функция освобождает ресурсы, используемые в объекте src, включая сам объект.
  * Всегда возвращает NULL. */
-RandomSource *linear_destroy(RandomSource *src)
+RandomSource *
+linear_destroy(RandomSource *src)
 {
     free(src->ops);
     free(src);
@@ -19,16 +20,18 @@ RandomSource *linear_destroy(RandomSource *src)
 }
 
 /* Функция возвращает следующее случайное значение.*/
-double linear_next(RandomSource *src)
+double
+linear_next(RandomSource *src)
 {
     src->number = (MULTIPLIER * src->number + INCREMENT) % MODULE;
     return ((double) src->number) / MODULE;
 }
 
 /* Фабрика объектов. */
-RandomSource *random_linear_factory(const char *params)
+RandomSource *
+random_linear_factory(const char *params)
 {
-    //преобразование строки
+    /*преобразование строки*/
     char *eptr = NULL;
     errno = 0;
     unsigned long seed = (unsigned long) strtol(params, &eptr, BASIS);
@@ -36,10 +39,10 @@ RandomSource *random_linear_factory(const char *params)
         return NULL;
     }
 
-    //учет только младших 31 бит
+    /*учет только младших 31 бит*/
     seed &= MASK;
 
-    //инициализация генератора
+    /*инициализация генератора*/
     RandomSource *generator = calloc(1, sizeof(*generator));
     if (generator == NULL) {
         return NULL;

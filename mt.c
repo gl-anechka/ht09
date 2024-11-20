@@ -14,7 +14,8 @@ struct
 
 /* Функция освобождает ресурсы, используемые в объекте src, включая сам объект.
  * Всегда возвращает NULL. */
-RandomSource *mt_destroy(RandomSource *src)
+RandomSource *
+mt_destroy(RandomSource *src)
 {
     free(src->ops);
     free(src);
@@ -22,15 +23,17 @@ RandomSource *mt_destroy(RandomSource *src)
 }
 
 /* Функция возвращает следующее случайное значение.*/
-double mt_next(RandomSource *src)
+double
+mt_next(RandomSource *src)
 {
     return genRand(&mt_rand.rand);
 }
 
 /* Фабрика объектов. */
-RandomSource *random_mt_factory(const char *params)
+RandomSource *
+random_mt_factory(const char *params)
 {
-    //преобразование строки
+    /*преобразование строки*/
     char *eptr = NULL;
     errno = 0;
     unsigned long seed = (unsigned long) strtol(params, &eptr, BASIS);
@@ -38,10 +41,10 @@ RandomSource *random_mt_factory(const char *params)
         return NULL;
     }
 
-    //создание генератора
+    /*создание генератора*/
     mt_rand.rand = seedRand((uint32_t) seed);
 
-    //инициализация генератора
+    /*инициализация генератора*/
     mt_rand.src = calloc(1, sizeof(*mt_rand.src));
     if (mt_rand.src == NULL) {
         return NULL;

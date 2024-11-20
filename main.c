@@ -28,7 +28,7 @@ main(int argc, char *argv[])
 
     RandomSource *generator;
     void *sym_func;
-    RandomSource* (*func) (const char *);
+    RandomSource * (*func)(const char *);
 
     if (!strcmp(argv[1], "mt")) {
         sym_func = dlsym(handle, "random_mt_factory");
@@ -37,7 +37,7 @@ main(int argc, char *argv[])
             return 1;
         }
 
-        func = (RandomSource* (*) (const char *)) sym_func;
+        func = (RandomSource * (*) (const char *)) sym_func;
 
         generator = func(argv[3]);
         for (int i = 0; i < n; i++) {
@@ -51,7 +51,7 @@ main(int argc, char *argv[])
             return 1;
         }
 
-        func = (RandomSource* (*) (const char *)) sym_func;
+        func = (RandomSource * (*) (const char *)) sym_func;
 
         generator = func(argv[3]);
         for (int i = 0; i < n; i++) {
