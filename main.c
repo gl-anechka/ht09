@@ -37,7 +37,7 @@ main(int argc, char *argv[])
             return 1;
         }
 
-        func = (RandomSource * (*) (const char *))sym_func;
+        func = (RandomSource * (*) (const char *) ) sym_func;
 
         generator = func(argv[3]);
         for (int i = 0; i < n; i++) {
@@ -51,7 +51,7 @@ main(int argc, char *argv[])
             return 1;
         }
 
-        func = (RandomSource * (*) (const char *))sym_func;
+        func = (RandomSource * (*) (const char *) ) sym_func;
 
         generator = func(argv[3]);
         for (int i = 0; i < n; i++) {
