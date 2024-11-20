@@ -16,7 +16,7 @@ struct RandomSource
  * Содержит поля destroy и next, которые являются указателями на функции. */
 struct RandomSourceOperations
 {
-    RandomSource * (*destroy)(RandomSource *src);
+    RandomSource *(*destroy)(RandomSource *src);
     double (*next)(RandomSource *src);
 };
 

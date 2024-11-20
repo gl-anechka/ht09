@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define STATE_VECTOR_LENGTH 624
-#define STATE_VECTOR_M      397 /* changes to STATE_VECTOR_LENGTH also require changes to this */
+#define STATE_VECTOR_M 397 /* changes to STATE_VECTOR_LENGTH also require changes to this */
 
 typedef struct tagMTRand
 {
@@ -13,7 +13,7 @@ typedef struct tagMTRand
 } MTRand;
 
 MTRand seedRand(uint32_t seed);
-uint32_t genRandLong(MTRand* rand);
-double genRand(MTRand* rand);
+uint32_t genRandLong(MTRand *rand);
+double genRand(MTRand *rand);
 
 #endif

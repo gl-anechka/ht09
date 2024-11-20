@@ -17,13 +17,13 @@
 #include "mtwister.h"
 
 inline static void
-m_seedRand(MTRand* rand, uint32_t seed)
+m_seedRand(MTRand *rand, uint32_t seed)
 {
     /* set initial seeds to mt[STATE_VECTOR_LENGTH] using the generator*/
     /* from Line 25 of Table 1 in: Donald Knuth, "The Art of Computer*/
     /* Programming," Vol. 2 (2nd Ed.) pp.102.*/
     rand->mt[0] = seed & 0xffffffff;
-    for(rand->index = 1; rand->index < STATE_VECTOR_LENGTH; rand->index++) {
+    for (rand->index = 1; rand->index < STATE_VECTOR_LENGTH; rand->index++) {
         rand->mt[rand->index] = (6069 * rand->mt[rand->index - 1]) & 0xffffffff;
     }
 }
@@ -74,5 +74,5 @@ genRandLong(MTRand *rand)
 double
 genRand(MTRand *rand)
 {
-    return((double)genRandLong(rand) / (uint32_t)0xffffffff);
+    return ((double) genRandLong(rand) / (uint32_t) 0xffffffff);
 }
